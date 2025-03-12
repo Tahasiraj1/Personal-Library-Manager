@@ -18,22 +18,11 @@ def save_books(books):
         json.dump(books, file, indent=4)
 
 
-class Book:
-    def __init__(self, title, author, year, genre, read=False):
-        self.title = title
-        self.author = author
-        self.year = year
-        self.genre = genre
-        self.read = read
-
-    def __str__(self):
-        return f"{self.title} by {self.author} ({self.year}) - {self.genre} - {'Read' if self.read else 'Unread'}"
-
-
-
+# LibraryManager class to handle crud operation like adding books ,deleting books, search books, displaying all books, and display statistics. 
 class LibraryManager:
     #Add book
     def add_book(self, title, author, year, genre, status):
+        """Add book"""
         books = load_books()
         new_book = {
             "title": title,
@@ -49,6 +38,7 @@ class LibraryManager:
 
     #Remove book
     def remove_book(self, title):
+        """Remove book by title"""
         books = load_books()
         for book in books:
             if book["title"] == title:
@@ -61,6 +51,7 @@ class LibraryManager:
 
     # Display all books
     def display_all_books(self):
+        """Display list of all books with status and index"""
         books = load_books()
         if not books:
             click.echo("No books found.")
@@ -72,6 +63,7 @@ class LibraryManager:
 
     # Search book
     def search_book(self, title=None, author=None):
+        """Search books either by title or author"""
         books = load_books()
         search_list = []
 
@@ -93,6 +85,7 @@ class LibraryManager:
 
 
     def display_statistics(self):
+        """Display statistics"""
         books = load_books()
 
         if not books:
