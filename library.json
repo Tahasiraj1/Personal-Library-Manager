@@ -12,5 +12,12 @@
         "publication_year": 1925,
         "genre": "Fiction",
         "read": true
+    },
+    {
+        "title": "hi",
+        "author": "hello",
+        "publication_year": 2020,
+        "genre": "hey",
+        "read": "no"
     }
 ]

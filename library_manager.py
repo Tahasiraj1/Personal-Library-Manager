@@ -57,7 +57,7 @@ class LibraryManager:
             click.echo("No books found.")
             return
         for index, book in enumerate(books, 1):
-            read_status = "✓" if book["read"] else "✗"
+            read_status = "✓" if book["read"] == True else "✗"
             click.echo(f"\n{index}. {book['title']} by {book['author']} ({book['publication_year']}) - {book['genre']} - {read_status}")
 
 
@@ -96,8 +96,8 @@ class LibraryManager:
         read_books = sum(1 for book in books if book.get("read", False))
         percentage_read = (read_books / total_books) * 100
 
-        click.echo(f"\nTotal books: {total_books}")
-        click.echo(f"Percentage read: {percentage_read:.1f}%")
+        click.echo(click.style(f"\nTotal books: {total_books}", bg='green'))
+        click.echo(click.style(f"Percentage read: {percentage_read:.1f}%", bg='green'))
 
     
 
@@ -119,28 +119,28 @@ def main():
         choice = click.prompt(click.style("Enter your choice", fg="green"), type=int)
 
         if choice == 1:
-            title = click.prompt("Enter book title")
-            author = click.prompt("Enter author name")
-            year = click.prompt("Enter publication year", type=int)
-            genre = click.prompt("Enter book genre")
-            status = click.prompt("Have you read it? (yes/no)", type=str)
+            title = click.prompt("Enter book title: ")
+            author = click.prompt("Enter author name: ")
+            year = click.prompt("Enter publication year: ", type=int)
+            genre = click.prompt("Enter your genre: ")
+            status = click.prompt("Have you read it? (yes/no) ").strip().lower()
             library.add_book(title, author, year, genre, status)
 
         elif choice == 2:
-            title = click.prompt("Enter book title to remove")
+            title = click.prompt("Enter book title to remove: ")
             library.remove_book(title)
 
         elif choice == 3:
-            search_type = click.prompt("Search by title or author?", type=str).lower()
+            search_type = click.prompt("Search by title or author? ", type=str.lower())
             if search_type == "title":
-                title = click.prompt("Enter book title")
+                title = click.prompt("Enter book title: ")
                 library.search_book(title=title)
             elif search_type == "author":
-                author = click.prompt("Enter author name")
+                author = click.prompt("Enter author name: ")
                 library.search_book(author=author)
             else:
-                click.echo("Invalid search type.")
-
+                click.echo(click.style("Invalid search type.", bg='red'))
+        
         elif choice == 4:
             library.display_all_books()
 
