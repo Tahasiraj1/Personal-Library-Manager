@@ -1,0 +1,16 @@
+[
+    {
+        "title": "The Great Gatsby by F",
+        "author": "Scott Fitzgerald",
+        "publication_year": 1925,
+        "genre": "Fiction",
+        "read": false
+    },
+    {
+        "title": "The Great Gatsby by F",
+        "author": "Scott Fitzgerald",
+        "publication_year": 1925,
+        "genre": "Fiction",
+        "read": true
+    }
+]
